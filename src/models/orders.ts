@@ -1,4 +1,4 @@
-// @ts-ignore
+
 import client from "../database";
 
 export type Order = {
@@ -10,7 +10,7 @@ export type Order = {
 export class OrderStore {
   async index(): Promise<Order[]> {
     try {
-      // @ts-ignore
+      
       const conn = await client.connect();
       const sql = 'SELECT * FROM orders';
       const { rows } = await conn.query(sql);
@@ -26,7 +26,7 @@ export class OrderStore {
   async show(id: string): Promise<Order> {
     try {
       const sql = 'SELECT * FROM orders WHERE id=($1)'
-      // @ts-ignore
+      
       const conn = await client.connect()
 
       const result = await conn.query(sql, [id])
@@ -43,7 +43,7 @@ export class OrderStore {
     console.log(o, 'o');
     try {
       const sql = 'INSERT INTO orders (status, user_id) VALUES($1, $2) RETURNING *';
-      // @ts-ignore
+      
       const conn = await client.connect();
       const result = await conn
         .query(sql, [o.status, o.user_id]);
@@ -61,7 +61,7 @@ export class OrderStore {
     try {
       const sql = 'UPDATE orders set status = $2, user_id = $3 WHERE id = $1';
 
-      // @ts-ignore
+      
       const conn = await client.connect()
 
       const result =
@@ -80,7 +80,7 @@ export class OrderStore {
   async delete(id: string): Promise<Order> {
     try {
       const sql = 'DELETE FROM orders WHERE id=($1)'
-      // @ts-ignore
+      
       const conn = await client.connect()
 
       const result = await conn.query(sql, [id])
@@ -99,8 +99,8 @@ export class OrderStore {
     : Promise<Order> {
     try {
       const ordersql = 'SELECT * FROM orders WHERE id=($1)'
-      //@ts-ignore
-      const conn = await Client.connect()
+     
+      const conn = await client.connect()
 
       const result = await conn.query(ordersql, [orderId])
 
@@ -118,7 +118,7 @@ export class OrderStore {
       const sql = 'INSERT INTO order_products (quantity, order_id, product_id) ' +
         'VALUES($1, $2, $3)';
 
-      // @ts-ignore
+     
       const conn = await client.connect();
 
       const result = await conn.query(sql, [quantity, orderId, productId]);
