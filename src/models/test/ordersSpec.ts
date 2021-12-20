@@ -6,8 +6,8 @@ const store = new OrderStore();
 describe('Order Model', () => {
   beforeAll(async()=> {
     const user: User = {
-      first_name: "seb",
-      last_name: "bod",
+      first_name: "Jeff",
+      last_name: "Beck",
       password: "lolito"
     }
     const userStore = new UserStore();

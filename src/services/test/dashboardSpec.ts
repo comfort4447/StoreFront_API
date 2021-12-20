@@ -8,10 +8,10 @@ describe('Dashboard service', () => {
   });
   it("currentOrderByUser method should return a list of orders and users",
     async() => {
-      const result = await store.currentOrderByUser("1");
+      const result = await store.currentOrderByUser("0");
       expect(result).toEqual([
         // @ts-ignore
-        { id: 1, first_name: 'seb', last_name: 'bod', status: 'Pending' }
+        { id: 1, first_name: 'Jeff', last_name: 'Beck', status: 'Pending' }
       ]);
     });
 });

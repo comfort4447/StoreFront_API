@@ -33,7 +33,7 @@ describe("User Model", () => {
     const user: User = {
       first_name: 'Jeff',
       last_name: 'Beck',
-      password: 'guitare'
+      password: 'lolito'
     }
 
     const result = await store.create(user);
@@ -55,7 +55,7 @@ describe("User Model", () => {
     const result = await store.show("2");
     // @ts-ignore
     expect(result.id).toEqual(2);
-    expect(result.first_name).toEqual("Jeff");
-    expect(result.last_name).toEqual("Beck");
+    expect(result.first_name).toEqual("seb");
+    expect(result.last_name).toEqual("bod");
   });
 });
