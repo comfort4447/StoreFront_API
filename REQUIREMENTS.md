@@ -20,7 +20,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Create route: `/orders [POST]` [token required]
 - current_orders_by_user route: `/current_orders_by_user/:id`[token required]
 
-## Data Shapes
+## Data Schema
 #### Product
 `CREATE TABLE products (
     id SERIAL PRIMARY KEY, 
@@ -54,3 +54,35 @@ These are the notes from a meeting with the frontend developer that describe wha
     product_id INTEGER REFERENCES products(id) NOT NULL
 );`
 
+## Data Shapes ##
+### Product 
+- id
+- name
+- price 
+- [OPTIONAL] category
+
+`Table: Product (id: serial [primary key], name : varchar(120) [not null], price : numeric [not null], category : varchar(120));`
+
+### Users
+- id
+- FirstName
+- LastName
+- password
+
+`Table: User (id: serial [primary key], first_name : varchar(120) [not null], last_name : varchar(120) [not null], password : varchar(60) [not null];`
+
+### Orders
+- id
+- id of each product in order
+- quantity of each product in order
+- user_id
+
+`Table: Order (id: serial [primary key], status : varchar(64) [not null], user_id : INTEGER REFERENCES user(id) [not null];`
+
+### Join Table
+- id
+- quantity
+- order_id
+- product_id
+
+`Table: order_product (id: serial [primary key], quantity : integer [not null], order_id : INTEGER REFERENCES order(id) [not null], product_id : INTEGER REFERENCES products(id) [not null];`

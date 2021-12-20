@@ -24,7 +24,7 @@ describe('Test products endpoint', () => {
   it('get the /products GET endpoint', async (done) => {
     const response = await request.get('/products');
     expect(response.status).toBe(400);
-    //done();
+    done();
   });
   it('get the /products/:id GET endpoint', async (done) => {
     const response = await request.get('/products/1');

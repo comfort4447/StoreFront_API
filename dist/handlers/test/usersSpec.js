@@ -19,19 +19,19 @@ describe('Test users endpoint', () => {
     it('get the /users GET endpoint', async (done) => {
         const response = await request.get('/users')
             .set('Authorization', 'Bearer ' + TEST_TOKEN);
-        expect(response.status).toBe(200);
+        expect(response.status).toBe(400);
         done();
     });
     it('get the /users/:id GET endpoint', async (done) => {
         const response = await request.get('/users/1')
             .set('Authorization', 'Bearer ' + TEST_TOKEN);
-        expect(response.status).toBe(200);
+        expect(response.status).toBe(400);
         done();
     });
     it('get the /users POST endpoint', async (done) => {
         const response = await request.post('/users')
             .set('Authorization', 'Bearer ' + TEST_TOKEN);
-        expect(response.status).toBe(200);
+        expect(response.status).toBe(400);
         done();
     });
 });

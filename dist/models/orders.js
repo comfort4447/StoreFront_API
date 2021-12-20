@@ -4,12 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderStore = void 0;
-// @ts-ignore
 const database_1 = __importDefault(require("../database"));
 class OrderStore {
     async index() {
         try {
-            // @ts-ignore
             const conn = await database_1.default.connect();
             const sql = 'SELECT * FROM orders';
             const { rows } = await conn.query(sql);
@@ -23,7 +21,6 @@ class OrderStore {
     async show(id) {
         try {
             const sql = 'SELECT * FROM orders WHERE id=($1)';
-            // @ts-ignore
             const conn = await database_1.default.connect();
             const result = await conn.query(sql, [id]);
             conn.release();
@@ -37,7 +34,6 @@ class OrderStore {
         console.log(o, 'o');
         try {
             const sql = 'INSERT INTO orders (status, user_id) VALUES($1, $2) RETURNING *';
-            // @ts-ignore
             const conn = await database_1.default.connect();
             const result = await conn
                 .query(sql, [o.status, o.user_id]);
@@ -52,7 +48,6 @@ class OrderStore {
     async update(o) {
         try {
             const sql = 'UPDATE orders set status = $2, user_id = $3 WHERE id = $1';
-            // @ts-ignore
             const conn = await database_1.default.connect();
             const result = await conn.query(sql, [o.id, o.status, o.user_id]);
             const product = result.rows[0];
@@ -66,7 +61,6 @@ class OrderStore {
     async delete(id) {
         try {
             const sql = 'DELETE FROM orders WHERE id=($1)';
-            // @ts-ignore
             const conn = await database_1.default.connect();
             const result = await conn.query(sql, [id]);
             const product = result.rows[0];
@@ -80,8 +74,7 @@ class OrderStore {
     async addProduct(quantity, orderId, productId) {
         try {
             const ordersql = 'SELECT * FROM orders WHERE id=($1)';
-            //@ts-ignore
-            const conn = await Client.connect();
+            const conn = await database_1.default.connect();
             const result = await conn.query(ordersql, [orderId]);
             const order = result.rows[0];
             if (order.status !== "open") {
@@ -95,7 +88,6 @@ class OrderStore {
         try {
             const sql = 'INSERT INTO order_products (quantity, order_id, product_id) ' +
                 'VALUES($1, $2, $3)';
-            // @ts-ignore
             const conn = await database_1.default.connect();
             const result = await conn.query(sql, [quantity, orderId, productId]);
             const { rows } = result;
