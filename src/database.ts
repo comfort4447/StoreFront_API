@@ -13,7 +13,7 @@ const {
   ENV
 } = process.env
 
-if (ENV === 'dev') {
+if (ENV==='dev') {
   client = new Pool({
     host: POSTGRES_HOST,
     database: POSTGRES_DB,
@@ -22,7 +22,7 @@ if (ENV === 'dev') {
   })
 }
 
-if (ENV === 'test') {
+if (ENV==='test') {
   client = new Pool({
     host: POSTGRES_HOST,
     database: POSTGRES_TEST_DB,
